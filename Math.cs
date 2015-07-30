@@ -90,7 +90,21 @@ namespace QuickAndDirty {
 		 		retval.point = A + retval.delta;
 		 	}
 
-		 	return retval;
-		 }
+			return retval;
+		}
+
+		public static float AntiLerp(float low, float high, float value)
+		{
+			if (value < low)
+			{
+				return 0f;
+			}
+			else if (value > high)
+			{
+				return 1f;
+			}
+
+			return (value - low) / (high - low);
+		}
 	}
 }
