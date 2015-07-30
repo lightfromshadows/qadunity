@@ -28,7 +28,7 @@ namespace QuickAndDirty.Splash
 
         void Awake()
         {
-            particles = gameObject.particleSystem;
+            particles = gameObject.GetComponent<ParticleSystem>();
             affectors = new List<ParticleAffector>();
         }
 
