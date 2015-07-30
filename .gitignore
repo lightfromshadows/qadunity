@@ -1,8 +1,2 @@
-# Visual Studio/Mono solution files
-*.sln
-*.csproj
-*.userprefs
-
-# Unity stuff that shouldn't go in the repo
-Library
-Temp
+# Let's not confuse the superproject
+*.meta
