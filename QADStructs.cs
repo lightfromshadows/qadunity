@@ -30,7 +30,7 @@ namespace QuickAndDirty {
         public abstract T Random();
         public abstract T Sample(float t);
         public abstract T Clamp(T v);
-
+		public abstract float Progress(T val);
 	}
 
 	[System.Serializable]
@@ -54,6 +54,10 @@ namespace QuickAndDirty {
         {
             return Mathf.Clamp(f, min, max);
         }
+		public override float Progress(float val)
+		{
+			return Math.AntiLerp(min, max, val);
+		}
 	}
 
 	[System.Serializable]
@@ -77,6 +81,10 @@ namespace QuickAndDirty {
         {
             return Mathf.Clamp(i, min, max);
         }
+		public override float Progress(int val)
+		{
+			return Math.AntiLerp(min, max, val);
+		}
 	}
 
 	[System.Serializable]
@@ -111,5 +119,13 @@ namespace QuickAndDirty {
         		Mathf.Clamp(v.b, min.b, max.b),
         		Mathf.Clamp(v.a, min.a, max.a));
         }
+		public override float Progress(Color val)
+		{
+			float total = Math.AntiLerp(min.r, max.r, val.r);
+			total += Math.AntiLerp(min.g, max.g, val.g);
+			total += Math.AntiLerp(min.b, max.b, val.b);
+			total += Math.AntiLerp(min.a, max.a, val.a);
+			return total / 4.0f;
+		}
 	}
 }
