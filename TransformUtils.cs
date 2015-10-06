@@ -9,6 +9,14 @@ namespace QuickAndDirty
     {
 		public static bool verbose = false;
 
+		public static bool Between(Vector3 point, Transform lhs, Transform rhs)
+		{
+			Plane lhsPlane = new Plane((rhs.position - lhs.position).normalized, lhs.position);
+			Plane rhsPlane = new Plane(-lhsPlane.normal, rhs.position);
+
+			return lhsPlane.GetSide(point) && rhsPlane.GetSide(point);
+		}
+
         public static T GetComponentUpwards<T>(Transform transform) where T : Component
         {
             T retval = transform.GetComponent<T>();
